@@ -1,32 +1,36 @@
 ---
 title: Image Caption Generator
-sdk: docker
-app_port: 7860
+sdk: streamlit
+app_file: app.py
 ---
 
 # Image Caption Generator
 
-The supplied HTML interface is served by web_app.py, with real YOLO object
-detection and BLIP captions. Translation falls back to English when unavailable.
-Voice playback uses the browser's installed voices; language availability varies.
+AI image caption generator built with Streamlit. The app detects objects with
+YOLOv8, generates captions with BLIP, translates captions, and creates voice
+output.
 
 ## Run
 
 ```bash
 source .venv/bin/activate
 python -m pip install -r requirements.txt
-python web_app.py
+python -m streamlit run app.py
 ```
 
-Open http://localhost:8502. Stop with Ctrl+C.
-Models download on first generation and remain cached.
-The original Streamlit interface remains in app.py.
+Open the local Streamlit URL shown in the terminal.
 
 ## Deploy
 
-Create a Hugging Face Space with Docker SDK and upload:
-web_app.py, index.html, requirements.txt, yolov8m.pt, Dockerfile, README.md.
-The Docker container serves port 7860. Model downloads require internet access.
+Deploy on Streamlit Community Cloud with:
 
-The sample button loads an illustration; generation analyzes it with the real
-models, so results may differ from the original HTML's demonstration text.
+- Repository: `gayitrijarajapu/automatic-image-caption-generator`
+- Branch: `version-2`
+- Main file path: `app.py`
+
+Required files:
+
+- `app.py`
+- `requirements.txt`
+- `yolov8m.pt`
+- `README.md`
