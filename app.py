@@ -82,8 +82,8 @@ if isinstance(request, dict) and request.get("id") != st.session_state.get("hand
             result.update(translated=result["caption"], voice_lang="en",
                           warning="Translation is temporarily unavailable. Showing the English caption.")
         st.session_state.response = result
-    except Exception:
+    except Exception as exc:
         logging.exception("Image analysis failed")
         st.session_state.response = {"id": request_id,
-            "error": "Could not analyze the image. Please retry. If it continues, check the server logs."}
+            "error": f"Could not analyze the image: {exc}"}
     st.rerun()
